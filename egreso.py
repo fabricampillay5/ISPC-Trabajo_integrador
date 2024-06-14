@@ -1,3 +1,0 @@
-
-def egresos ():
-    print("Egreso")

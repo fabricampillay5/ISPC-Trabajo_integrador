@@ -1,0 +1,3 @@
+
+def egresos ():
+    print("Egreso")
