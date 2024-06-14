@@ -1,3 +1,0 @@
-
-def ingresos ():
-    print("Ingreso")
