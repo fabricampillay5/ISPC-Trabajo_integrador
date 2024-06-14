@@ -1,2 +1,0 @@
-def fins ():
-    print("Fin")
