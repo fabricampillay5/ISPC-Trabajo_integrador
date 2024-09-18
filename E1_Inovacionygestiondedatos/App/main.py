@@ -21,7 +21,7 @@ def registrar_usuario():
     apellido = input("Ingrese su apellido: ")
     dni = input("Ingrese su DNI: ")
 
-    if dni in [u['dni'] for u in usuarios.values()]:
+    if dni in [u['dni'] for u in usuarios]: # se corrigio el error ".values"; funcion incorrecta por ser propia de un dicc
         print("Error: El DNI ya esta resgistrado.")
         return
 
@@ -43,14 +43,16 @@ def registrar_usuario():
 
 
     if validar_captcha():
-        usuarios[nombre_usuario] = {
+ # Añadir un nuevo diccionario a la lista de usuarios
+        usuarios.append({
             'nombre': nombre,
             'apellido': apellido,
             'dni': dni,
             'email': email,
             'fecha_nacimiento': fecha_nacimiento,
+            'nombreUsuario': nombre_usuario,
             'clave': clave
-        }
+        })
         with open("usuariosCreados.txt", "a") as file:
             file.write(f"Usuario: {nombre_usuario}, DNI: {dni}, Registrado correctamente.\n")
         print("Usuario registrado correctamente.\n")
@@ -77,24 +79,36 @@ def validar_captcha():
 
 
 def iniciar_sesion():
+    print("\n--- Inicio de Sesion ---")
     nombre_usuario = input("Ingrese su nombre de usuario: ")
-    if nombre_usuario not in usuarios:
-        print("Usuario no resgistrado.")
+
+    # Verificar si el usuario está en la lista de usuarios
+    usuario_encontrado = None
+    for usuario in usuarios:
+        if usuario['nombreUsuario'] == nombre_usuario:
+            usuario_encontrado = usuario
+            break
+
+    if usuario_encontrado is None:
+        print("Usuario no registrado.")
         return
 
     intentos = 0
     while intentos < 4:
         clave = input("Ingrese su clave: ")
-        if clave == usuarios[nombre_usuario]['clave']:
+        if clave == usuario_encontrado['clave']:
             print(f"Acceso concedido. Bienvenido {nombre_usuario}.\n")
             with open("ingresos.txt", "a") as file:
-                file.write(f"Usuario: {nombre_usuario}, Fecha de ingreso: ahora().\n")
+                # ponemos la fecha actual correctamente
+                from datetime import datetime
+                fecha_ingreso = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                file.write(f"Usuario: {nombre_usuario}, Fecha de ingreso: {fecha_ingreso}.\n")
             return
         else:
             intentos +=1
             print(f"Clave incorrecta. Intento {intentos}/4.")
             if intentos == 4:
-                print("Usuario bloqueado por intentos fallidos.")
+                print("Usuario bloaqueado por intentos fallidos.")
                 with open("log.txt", "a") as file:
                     file.write(f"Usuario bloqueado: {nombre_usuario}.\n")
 
