@@ -1,0 +1,39 @@
+----- Descripción del proyecto -----
+Este programa en Python implementa un sistema de gestión de usuarios y accesos utilizando Programación Orientada a Objetos (POO) y almacenamiento en archivos binarios. El proyecto está dividido en cuatro archivos principales:
+
+  1 . clases.py: Define las clases Usuario y Acceso.
+
+Usuario: Representa a un usuario con atributos como id, username, password, y email.
+Acceso: Registra cada vez que un usuario accede al sistema, con atributos como id, fechaIngreso, fechaSalida y el usuario asociado.
+
+  2. acceso.py: Contiene funciones para gestionar el acceso de los usuarios al sistema.
+
+iniciar_sesion: Permite a los usuarios iniciar sesión proporcionando su username y password. Si las credenciales son correctas, se registra el acceso en el archivo accesos.ispc.
+registrar_acceso: Registra la entrada de un usuario en el sistema.
+registrar_intento_fallido: Registra en log.txt los intentos fallidos de inicio de sesión.
+
+  3. crud.py: Gestiona las operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre los usuarios.
+
+cargar_usuario: Carga los usuarios desde el archivo binario usuarios.ispc.
+guardar_usuario: Guarda los usuarios en el archivo binario.
+agregar_usuario: Añade un nuevo usuario.
+modificar_usuario: Modifica la información de un usuario existente.
+eliminar_usuario: Elimina un usuario dado su username o email.
+buscar_usuario: Busca un usuario por su email o username.
+mostrar_usuarios: Muestra todos los usuarios registrados.
+
+  4. main.py: Implementa el menú principal, donde se ofrecen las siguientes opciones:
+
+Iniciar sesión: Permite al usuario ingresar al sistema proporcionando su username y password.
+Agregar usuario: Añade un nuevo usuario al sistema.
+Modificar usuario: Modifica los datos de un usuario existente.
+Eliminar usuario: Elimina un usuario por username o email.
+Buscar usuario: Busca un usuario y muestra sus datos.
+Mostrar todos los usuarios: Lista todos los usuarios registrados.
+Salir: Termina la ejecución del programa.
+
+----- Archivos de datos -----
+
+usuarios.ispc: Archivo binario donde se almacenan los datos de los usuarios.
+accesos.ispc: Archivo binario donde se registra cada acceso exitoso de los usuarios.
+log.txt: Archivo de texto donde se registran los intentos fallidos de acceso al sistema.
