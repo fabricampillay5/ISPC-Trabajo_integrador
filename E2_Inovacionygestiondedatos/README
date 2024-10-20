@@ -1,0 +1,42 @@
+Gestión de Usuarios y Accesos.
+
+Descripción
+Este proyecto es un sistema de gestión de usuarios y accesos desarrollado en Python, utilizando Programación Orientada a Objetos (POO) y el manejo de archivos binarios. 
+El sistema permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre los usuarios y gestionar los accesos de cada uno. 
+Los datos de los usuarios se almacenan en un archivo binario (usuarios.ispc), mientras que los accesos y los intentos fallidos se registran en archivos binarios (accesos.ispc) y de texto (logs.txt), respectivamente.
+
+¿Cómo ejecutar y probar este programa?
+Requisitos:
+- Tener instalado Python 3 en tu sistema.
+-  Clonar o descargar el repositorio del proyecto.
+
+Pasos para ejecutar:
+- Abre una terminal o línea de comandos.
+- Navega hasta el directorio donde se encuentra el archivo main.py.
+- Ejecuta el siguiente comando: python main.py
+
+Opciones del menú:
+-CRUD de Usuarios:
+    -Agregar un nuevo usuario.
+    -Modificar un usuario existente.
+    -Eliminar un usuario por su username o email.
+    -Buscar usuarios por username o email y mostrar sus datos.
+    -Mostrar todos los usuarios registrados.
+-Acceder al sistema: Ingresa con username y password, y registra los accesos correctos o los intentos fallidos.
+-Salir de la aplicación.
+
+Inconvenientes y cómo se superaron
+Inconveniente 1: Gestión de usuarios como diccionario
+Inicialmente, los usuarios se estaban cargando como una lista, lo que generaba errores al intentar acceder a los usuarios por su username. 
+Este problema fue resuelto cambiando la estructura de almacenamiento a un diccionario, donde la clave es el username del usuario.
+
+Inconveniente 2: Manejo de archivos binarios
+Hubo dificultades en el manejo de archivos binarios al guardar y cargar los usuarios y accesos.
+Para solucionar esto, se implementaron correctamente las funciones pickle.dump() y pickle.load(), lo que permitió almacenar y recuperar los datos de manera efectiva.
+
+Inconveniente 3: Indentación en Python
+En uno de los archivos, se encontró un error de indentación. Este problema fue resuelto ajustando el código para que siguiera la regla de 4 espacios por nivel de indentación en todo el proyecto.
+
+Instalaciones necesarias
+Para ejecutar el programa, únicamente necesitas tener Python 3 instalado en tu máquina.
+No es necesario instalar librerías adicionales, ya que el programa utiliza únicamente bibliotecas estándar de Python (pickle y os).
