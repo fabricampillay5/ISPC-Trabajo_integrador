@@ -1,1 +1,6 @@
+SISTEMA DE GESTION DE USUARIOS Y REGISTROS PLUVIALES 
 
+Este proyecto en python permite gestionar usuarios y accesos, asi como almacenar y analizar registros pluviales. Algunas de las nuevas funcionalidades son:
+- Ordenamiento y busqueda de usuarios: Se implementaron métodos de ordenamiento (Burbuja y Python) y de búsqueda (Secuencial y Binaria) para optimizar la gestión de usuarios.
+- Gestion de registros pluviales: El sistema genera registros de lluvias aleatorios, permite guardar en formato CSV y visualizar los datos con gráficos de barras, dispersión y proporción mensual.
+- Consultas con MySQL:  Integración con MySQL para almacenar y recuperar información de usuarios, incluyendo un cifrado de contraseñas para mayor seguridad.
