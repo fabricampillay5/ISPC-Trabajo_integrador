@@ -1,0 +1,52 @@
+-- Poblar tabla clientes
+INSERT INTO clientes (DNI, nombre, direccion, telefono, activo) VALUES
+    (12345678, 'Juan Pérez', 'Calle Falsa 123', '5551234', 1),
+    (23456789, 'María García', 'Avenida Siempre Viva 456', '5555678', 1),
+    (34567890, 'Carlos Rodríguez', 'Boulevard de los Sueños 789', '5558765', 1),
+    (45678901, 'Ana López', 'Camino de la Esperanza 101', '5554321', 1);
+
+-- Poblar tabla proveedor
+INSERT INTO proveedor (id, razon_social, tipo_producto, telefono) VALUES
+    (1, 'NutriTerneros S.A.', 'Alimentos para terneros', '5551111'),
+    (2, 'PorcinoNutri Ltda.', 'Alimentos para cerdos', '5552222'),
+    (3, 'ÑandúCare', 'Alimentos para ñandúes', '5553333'),
+    (4, 'GallinasVital', 'Alimentos para gallinas', '5554444'),
+    (5, 'ToroFeed Co.', 'Alimentos para toros', '5555555');
+
+-- Poblar tabla producto
+INSERT INTO producto (id, nombre_producto, cantidad, fecha_vencimiento, proveedor_id) VALUES
+    (1, 'Alimento para terneros', 100, '2025-06-13', 1),
+    (2, 'Alimento para cerdos', 200, '2025-06-14', 2),
+    (3, 'Alimento para ñandúes', 150, '2025-06-15', 3),
+    (4, 'Alimento para gallinas', 250, '2025-06-16', 4),
+    (5, 'Alimento para toros', 180, '2025-06-17', 5);
+
+-- Poblar tabla orden_compra
+INSERT INTO orden_compra (nro_orden, fecha, proveedor_id) VALUES
+    (1, '2024-01-15', 1),
+    (2, '2024-02-10', 2),
+    (3, '2024-03-05', 3),
+    (4, '2024-04-20', 4),
+    (5, '2024-05-25', 5);
+
+-- Poblar tabla producto_orden_compra
+INSERT INTO producto_orden_compra (orden_compra_id, producto_id, cantidad) VALUES
+    (1, 1, 50),
+    (2, 2, 100),
+    (3, 3, 80),
+    (4, 4, 120),
+    (5, 5, 60);
+
+-- Poblar tabla orden_despacho
+INSERT INTO orden_despacho (num_despacho, fecha, cliente_dni) VALUES
+    (1, '2024-06-10', 12345678),
+    (2, '2024-07-15', 23456789),
+    (3, '2024-08-20', 34567890),
+    (4, '2024-09-25', 45678901);
+
+-- Poblar tabla producto_orden_despacho
+INSERT INTO producto_orden_despacho (orden_despacho_id, producto_id, cantidad) VALUES
+    (1, 1, 20),
+    (2, 2, 50),
+    (3, 3, 30),
+    (4, 4, 60);
