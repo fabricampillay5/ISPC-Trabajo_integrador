@@ -1,0 +1,66 @@
+-- Crear base de datos
+CREATE DATABASE IF NOT EXISTS nutricion_animal;
+USE nutricion_animal;
+
+-- Crear tabla clientes
+CREATE TABLE clientes (
+    DNI INT PRIMARY KEY,
+    nombre VARCHAR(45) NOT NULL,
+    direccion VARCHAR(100),
+    telefono VARCHAR(15),
+    activo TINYINT(1) DEFAULT 1
+);
+
+-- Crear tabla proveedor
+CREATE TABLE proveedor (
+    id INT PRIMARY KEY,
+    razon_social VARCHAR(100) NOT NULL,
+    tipo_producto VARCHAR(45),
+    telefono VARCHAR(15)
+);
+
+-- Crear tabla producto
+CREATE TABLE producto (
+    id INT PRIMARY KEY,
+    nombre_producto VARCHAR(45) NOT NULL,
+    cantidad INT DEFAULT 0,
+    fecha_vencimiento DATE,
+    proveedor_id INT,
+    FOREIGN KEY (proveedor_id) REFERENCES proveedor(id) ON DELETE SET NULL
+);
+
+-- Crear tabla orden_compra
+CREATE TABLE orden_compra (
+    nro_orden INT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    proveedor_id INT,
+    FOREIGN KEY (proveedor_id) REFERENCES proveedor(id) ON DELETE CASCADE
+);
+
+-- Crear tabla producto_orden_compra (relación muchos a muchos entre orden_compra y producto)
+CREATE TABLE producto_orden_compra (
+    orden_compra_id INT,
+    producto_id INT,
+    cantidad INT NOT NULL,
+    PRIMARY KEY (orden_compra_id, producto_id),
+    FOREIGN KEY (orden_compra_id) REFERENCES orden_compra(nro_orden) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES producto(id) ON DELETE CASCADE
+);
+
+-- Crear tabla orden_despacho
+CREATE TABLE orden_despacho (
+    num_despacho INT PRIMARY KEY,
+    fecha DATE NOT NULL,
+    cliente_dni INT,
+    FOREIGN KEY (cliente_dni) REFERENCES clientes(DNI) ON DELETE CASCADE
+);
+
+-- Crear tabla producto_orden_despacho (relación muchos a muchos entre orden_despacho y producto)
+CREATE TABLE producto_orden_despacho (
+    orden_despacho_id INT,
+    producto_id INT,
+    cantidad INT NOT NULL,
+    PRIMARY KEY (orden_despacho_id, producto_id),
+    FOREIGN KEY (orden_despacho_id) REFERENCES orden_despacho(num_despacho) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES producto(id) ON DELETE CASCADE
+);
